@@ -113,6 +113,9 @@ call vundle#begin()
 " 让vundle管理插件版本,必须
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
+Plugin 'plasticboy/vim-markdown' "markdown语法高亮插件
+Plugin 'iamcco/markdown-preview.vim' "vim编辑markdown预览插件
+let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
 "Plugin 'connorholyday/vim-snazzy'
 "Plugin 'ycm-core/YouCompleteMe'
 " 以下范例用来支持不同格式的插件安装.
