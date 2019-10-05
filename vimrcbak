@@ -8,12 +8,12 @@ let mapleader=" "
 
 
 "设置主题
-"1.evening
-"2.slate
-"3.peachpuff
-"4.koehler
-"5.pablo
-colorscheme koehler
+"industry 无透明，青灰色双引号内容，绿色注释，C语言关键字无高亮
+"slate 透明，绿色双引号内容，橙色注释，C语言蓝色高亮关键字
+"desert 透明，橙色双引号内容，绿色注释，C语言关键字高亮
+"pablo 透明，森绿色双引号内容，灰色注释，C语言关键字高亮
+"peachpuff
+colorscheme slate
 "colorscheme snazzy
 "设置透明
 "let g:SnazzyTransparent = 1
@@ -116,6 +116,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'plasticboy/vim-markdown' "markdown语法高亮插件
 Plugin 'iamcco/markdown-preview.vim' "vim编辑markdown预览插件
 let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
+"noremap M :MarkdownPreview<CR> "无法自动关闭
 "Plugin 'connorholyday/vim-snazzy'
 "Plugin 'ycm-core/YouCompleteMe'
 " 以下范例用来支持不同格式的插件安装.
