@@ -39,7 +39,10 @@ set wildmenu
 "让vim可以使用鼠标
 set mouse=a
 
-"更改进入不同模式光标的样式
+"让屏幕上下移动时都显示x行
+set scrolloff=7
+
+"更改进入不同模式光标的样式似乎只在alacritty生效
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -52,7 +55,7 @@ inoremap jj <Esc>
 
 "打开语法高亮
 syntax on 
-"打开搜素高亮
+"打开搜索高亮
 set hlsearch
 exec "nohlsearch"
 "打开边搜索边高亮
@@ -63,6 +66,7 @@ set ignorecase
 set smartcase
 noremap = nzz
 noremap - Nzz
+"关闭高亮
 noremap <LEADER><CR> :nohlsearch<CR>
 
 "R变成后面这个命令
@@ -76,6 +80,8 @@ map S :w<CR>
 "退出
 map Q :q<CR>
 
+"快速查找<++>并替换<++>（占位符）可任意替换
+map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 "分屏操作向右设置光标向右，左右分屏vsplit上下split
 map sr :set splitright<CR>:vsplit<CR>
@@ -110,6 +116,12 @@ map th :-tabnext<CR>
 "注意！这里跳5行操作还是原来为更改移动键位时默认的hjkl
 noremap J 5j
 noremap K 5k
+noremap H 5h
+noremap L 5l
+
+"快速移动到行首或行尾
+noremap <C-n> 0
+noremap <C-m> $
 "i插入模式被更改这里使用h
 "noremap h i
 "noremap H I
@@ -129,8 +141,10 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vim-airline/vim-airline'
 Plugin 'plasticboy/vim-markdown' "markdown语法高亮插件
-Plugin 'iamcco/markdown-preview.vim' "vim编辑markdown预览插件
+Plugin 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install_sync()},'for' :['markdown', 'Vundle' ] } "vim编辑markdown预览插件
 let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
+let g:mkdp_auto_close = 1 "设置自动关闭默认为1,取消写0
+let g:mkdp_page_title = '「${name}」' "预览的时候顶部显示markdown文件的名字
 "noremap M :MarkdownPreview<CR> "无法自动关闭
 "Plugin 'connorholyday/vim-snazzy'
 "Plugin 'ycm-core/YouCompleteMe'
