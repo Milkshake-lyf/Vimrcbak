@@ -36,8 +36,16 @@ set showcmd
 "设置normal模式命令补全
 set wildmenu
 
+"让vim可以使用鼠标
+set mouse=a
 
+"更改进入不同模式光标的样式
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
+"进入时光标在上一次退出的地方
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "把jj设置成Esc键
 inoremap jj <Esc>
@@ -84,6 +92,13 @@ map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <right> :vertical resize +5<CR>
 map <left> :vertical resize -5<CR>
+"标签操作
+"打开一个新的标签
+map tt :tabe<CR>
+"下一个标签页
+map tl :+tabnext<CR>
+"上一个标签页
+map th :-tabnext<CR>
 
 "noremap格式说明
 "noremap ×替换后的键位× ×替换前的键位×
@@ -119,6 +134,24 @@ let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome
 "noremap M :MarkdownPreview<CR> "无法自动关闭
 "Plugin 'connorholyday/vim-snazzy'
 "Plugin 'ycm-core/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+"更改启动NERDTree的键位
+map ff :NERDTreeToggle<CR> 
+"A plugin of NERDTree showing git status flags. Works with the LATEST version of NERDTree.
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+let g:NERDTreeShowIgnoredStatus = 1
 " 以下范例用来支持不同格式的插件安装.
 " Github上的插件
 " 格式为 Plugin '用户名/插件仓库名'
