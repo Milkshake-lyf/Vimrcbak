@@ -10,10 +10,17 @@ let mapleader=" "
 "设置主题
 "industry 无透明，青灰色双引号内容，绿色注释，C语言关键字无高亮
 "slate 透明，绿色双引号内容，橙色注释，C语言蓝色高亮关键字
-"desert 透明，橙色双引号内容，绿色注释，C语言关键字高亮
+"desert 透明，橙（棕）色双引号内容，绿色注释，C语言关键字高亮
 "pablo 透明，森绿色双引号内容，灰色注释，C语言关键字高亮
 "peachpuff
-colorscheme slate
+"darkblue 无透明，淡紫色双引号，数字内容，红色注释，关键字高亮除printf外，笔记本上的使用
+"default 透明，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
+"delek 透明，青绿色双引号，数字内容，红色注释，关键字高亮除printf外，笔记本上的使用
+"elflord 透明，蓝紫色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
+"industry 无透明，蓝灰色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
+"morning 白色背景，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
+"murphy 无透明，森绿色双引号，数字内容，关键字也是森绿色，灰白色注释，笔记本上的配置
+colorscheme pablo
 "colorscheme snazzy
 "设置透明
 "let g:SnazzyTransparent = 1
@@ -83,6 +90,7 @@ map Q :q<CR>
 "快速查找<++>并替换<++>（占位符）可任意替换
 map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
+"分屏操作
 "分屏操作向右设置光标向右，左右分屏vsplit上下split
 map sr :set splitright<CR>:vsplit<CR>
 map sl :set nosplitright<CR>:vsplit<CR>
@@ -98,6 +106,7 @@ map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <right> :vertical resize +5<CR>
 map <left> :vertical resize -5<CR>
+
 "标签操作
 "打开一个新的标签
 map tt :tabe<CR>
