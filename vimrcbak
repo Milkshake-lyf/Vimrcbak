@@ -152,8 +152,10 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'plasticboy/vim-markdown' "markdown语法高亮插件
 Plugin 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install_sync()},'for' :['markdown', 'Vundle' ] } "vim编辑markdown预览插件
 let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
+let g:mkdp_auto_start = 1 "设置自动打开，打开为1,取消为0
 let g:mkdp_auto_close = 1 "设置自动关闭默认为1,取消写0
 let g:mkdp_page_title = '「${name}」' "预览的时候顶部显示markdown文件的名字
+let g:mkdp_browserfunc = 'sync_scrool_type:relative'
 "noremap M :MarkdownPreview<CR> "无法自动关闭
 "Plugin 'connorholyday/vim-snazzy'
 "Plugin 'ycm-core/YouCompleteMe'
