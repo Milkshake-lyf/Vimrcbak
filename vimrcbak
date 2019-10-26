@@ -136,6 +136,31 @@ noremap <C-m> $
 "noremap H I
 "更改移动键位end
 
+"设置自动补全括号，输入右边的符号自动跳过
+"ClosePair是一个自定义函数用来跳过右边符号"
+inoremap ( ()<Esc>i 
+"在i后面加入了一个空格"
+inoremap ) <C-r>=ClosePair(')')<CR>
+inoremap { {}<Esc>i<CR><Esc>O<Tab>
+inoremap } <C-r>=ClosePair('}')<CR>
+inoremap [ []<Esc>i 
+"在i后面加入了一个空格"
+inoremap ] <C-r>=ClosePair(']')<CR>
+"双引号和单引号设置会出问题"
+inoremap ' ''<Esc>i
+"inoremap ' <C-r>=ClosePair('')<CR>
+inoremap " ""<Esc>i
+"inoremap " <C-r>=ClosePair('')<CR>
+"跳过右边符号的函数"
+function! ClosePair(char)
+    if getline('.')[col('.') - 1] == a:char
+		        return " \<Right> "
+			"分别在跳过右边符号时前面后面添加了一个空格，用来跳过高亮"
+	else
+			    return a:char
+	endif
+endfunction
+
 
 set nocompatible              " 去除VI一致性,必须
 filetype off                  " 必须
