@@ -21,7 +21,9 @@ let mapleader=" "
 "morning 白色背景，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
 "murphy 无透明，森绿色双引号，数字内容，关键字也是森绿色，灰白色注释，笔记本上的配置
 colorscheme pablo
-"colorscheme snazzy
+"上面这个是笔记本上的主题配置
+"下面这个是PC上的配置
+"colorscheme slate
 "设置透明
 "let g:SnazzyTransparent = 1
 
