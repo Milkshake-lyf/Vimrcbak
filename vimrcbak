@@ -20,7 +20,8 @@ let mapleader=" "
 "industry 无透明，蓝灰色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
 "morning 白色背景，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
 "murphy 无透明，森绿色双引号，数字内容，关键字也是森绿色，灰白色注释，笔记本上的配置
-colorscheme pablo
+colorscheme elflord
+"industry, delek, elflord"
 "上面这个是笔记本上的主题配置
 "下面这个是PC上的配置
 "colorscheme slate
@@ -89,8 +90,6 @@ map S :w<CR>
 "退出
 map Q :q<CR>
 
-"快速查找<++>并替换<++>（占位符）可任意替换
-map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 "分屏操作
 "分屏操作向右设置光标向右，左右分屏vsplit上下split
@@ -143,7 +142,8 @@ noremap <C-m> $
 inoremap ( ()<Esc>i 
 "在i后面加入了一个空格"
 inoremap ) <C-r>=ClosePair(')')<CR>
-inoremap { {}<Esc>i<CR><Esc>O<Tab>
+inoremap { {}<Esc>i<CR><Esc>O
+"<Tab>"
 inoremap } <C-r>=ClosePair('}')<CR>
 inoremap [ []<Esc>i 
 "在i后面加入了一个空格"
@@ -156,13 +156,23 @@ inoremap " ""<Esc>i
 "跳过右边符号的函数"
 function! ClosePair(char)
     if getline('.')[col('.') - 1] == a:char
-		        return " \<Right> "
+		        return " \<Right>"
 			"分别在跳过右边符号时前面后面添加了一个空格，用来跳过高亮"
 	else
 			    return a:char
 	endif
 endfunction
 
+
+"快速查找<++>并替换<++>（占位符）可任意替换
+"注意此处LEADER已在文件头更改成空格"
+""map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
+"设置C自动补全"
+inoremap printf printf("",<++>);<Esc>7hi
+inoremap scanf scanf("",&<++>);<Esc>8hi
+nnoremap cs i#include<stdio.h><CR>int main( void )<CR>{}<Esc>i<CR><CR><UP><TAB>return 0;<Esc>O
 
 set nocompatible              " 去除VI一致性,必须
 filetype off                  " 必须
@@ -179,13 +189,13 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'plasticboy/vim-markdown' "markdown语法高亮插件
 Plugin 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install_sync()},'for' :['markdown', 'Vundle' ] } "vim编辑markdown预览插件
 let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
-let g:mkdp_auto_start = 1 "设置自动打开，打开为1,取消为0
+let g:mkdp_auto_start = 0 "设置自动打开，打开为1,取消为0
 let g:mkdp_auto_close = 1 "设置自动关闭默认为1,取消写0
 let g:mkdp_page_title = '「${name}」' "预览的时候顶部显示markdown文件的名字
 let g:mkdp_browserfunc = 'sync_scrool_type:relative'
 "noremap M :MarkdownPreview<CR> "无法自动关闭
 "Plugin 'connorholyday/vim-snazzy'
-"Plugin 'ycm-core/YouCompleteMe'
+Plugin 'ycm-core/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 "更改启动NERDTree的键位
 map ff :NERDTreeToggle<CR> 
