@@ -1,5 +1,5 @@
 "设置leader键成空格，默认为反斜杆
-let mapleader=" "
+let mapleader="`"
 "vimrc 的主要配置
 "常用设置
 "常用映射
@@ -165,7 +165,7 @@ endfunction
 
 
 "快速查找<++>并替换<++>（占位符）可任意替换
-"注意此处LEADER已在文件头更改成空格"
+"注意此处LEADER已在文件头更改成1左边的符号"
 ""map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
