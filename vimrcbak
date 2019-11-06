@@ -1,4 +1,4 @@
-"设置leader键成空格，默认为反斜杆
+"设置leader键成数字1左边的键 ( 空格 ) ，默认为反斜杆
 let mapleader="`"
 "vimrc 的主要配置
 "常用设置
@@ -20,14 +20,22 @@ let mapleader="`"
 "industry 无透明，蓝灰色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
 "morning 白色背景，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
 "murphy 无透明，森绿色双引号，数字内容，关键字也是森绿色，灰白色注释，笔记本上的配置
-colorscheme elflord
-"industry, delek, elflord"
+colorscheme koehler
+"industry, delek, elflord darkblue koehler"
 "上面这个是笔记本上的主题配置
 "下面这个是PC上的配置
 "colorscheme slate
 "设置透明
 "let g:SnazzyTransparent = 1
 
+
+
+"按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。"
+set autoindent
+"设置tab转为空格"
+set expandtab
+"设置tab转换成多少个空格"
+set softtabstop=4
 "设置行号
 set number 
 
@@ -80,9 +88,9 @@ noremap - Nzz
 noremap <LEADER><CR> :nohlsearch<CR>
 
 "R变成后面这个命令
-map R :source $MYVIMRC<CR> 
+map E :source $MYVIMRC<CR> 
 "小写s会删除当前字符使用<nop>变为空
-map s <nop>
+""map s <nop>
 
 "保存
 map S :w<CR> 
@@ -170,9 +178,11 @@ endfunction
 inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 "设置C自动补全"
-inoremap printf printf("",<++>);<Esc>7hi
+inoremap <C-p> printf("",<++>);<Esc>7hi
 inoremap scanf scanf("",&<++>);<Esc>8hi
-nnoremap cs i#include<stdio.h><CR>int main( void )<CR>{}<Esc>i<CR><CR><UP><TAB>return 0;<Esc>O
+nnoremap co i#include<stdio.h><CR>int main( void )<CR>{}<Esc>i<CR><CR><UP><TAB><TAB>return 0;<Esc>O
+"设置注释补全"
+inoremap /* /*  */<Esc>2hi
 
 set nocompatible              " 去除VI一致性,必须
 filetype off                  " 必须
@@ -185,7 +195,22 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 " 让vundle管理插件版本,必须
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'Yggdroot/indentLine' "缩进线条"
+"缩进线条插件配置"
+let g:indentLine_setColors = 1 "设置突出颜色0开启1关闭"
+let g:indentLine_color_term = 255 "设置指示线的颜色"
+""let g:indentLine_bgcolor_term = 255""let g:indentLine_bgcolor_gui = '#FF5F00'
+""let g:indentLine_concealcursor = 'inc'
+""let g:indentLine_conceallevel = 2
+""let g:indentLine_setConceal = 1 "设置显示竖线"
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+""
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+"airline 主题全局设定"
+let g:airline_theme = 'tomorrow'
+"airline_theme"
+"simple light fruit_punch behelit dark dark_minimal tomorrow"
 Plugin 'plasticboy/vim-markdown' "markdown语法高亮插件
 Plugin 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install_sync()},'for' :['markdown', 'Vundle' ] } "vim编辑markdown预览插件
 let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
