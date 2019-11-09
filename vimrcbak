@@ -1,5 +1,5 @@
-"设置leader键成数字1左边的键 ( 空格 ) ，默认为反斜杆
-let mapleader="`"
+"设置leader键成英文逗号，默认为反斜杆
+let mapleader=","
 "vimrc 的主要配置
 "常用设置
 "常用映射
