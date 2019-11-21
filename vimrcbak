@@ -30,6 +30,9 @@ colorscheme koehler
 
 
 
+"设置出现输入的键位
+set showcmd
+
 "按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。"
 set autoindent
 "设置tab转为空格"
@@ -44,12 +47,13 @@ set relativenumber
 
 "设置光标所在字母的下划线
 "set cursorline
+"设置光标所在字母的竖线
+"set cursorcolumn
+nnoremap <LEADER>s :set cursorline cursorcolumn<CR>
+nnoremap <LEADER>ss :set nocursorline nocursorcolumn<CR>
 
 "设置自动换行不会超出屏幕边缘
 set wrap
-
-"设置出现输入的键位
-set showcmd
 
 "设置normal模式命令补全
 set wildmenu
@@ -69,7 +73,7 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "把jj设置成Esc键
-inoremap jj <Esc>
+inoremap kj <Esc>
 
 "打开语法高亮
 syntax on 
@@ -85,7 +89,7 @@ set smartcase
 noremap = nzz
 noremap - Nzz
 "关闭高亮
-noremap <LEADER><CR> :nohlsearch<CR>
+noremap <LEADER>/ :nohlsearch<CR>
 
 "R变成后面这个命令
 map E :source $MYVIMRC<CR> 
@@ -93,10 +97,10 @@ map E :source $MYVIMRC<CR>
 ""map s <nop>
 
 "保存
-map S :w<CR> 
+map <LEADER>w :w<CR> 
 
 "退出
-map Q :q<CR>
+map <LEADER>q :q<CR>
 
 
 "分屏操作
@@ -194,9 +198,20 @@ call vundle#begin()
 " 另一种选择, 指定一个vundle安装插件的路径
 "call vundle#begin('~/some/path/here')
 " 让vundle管理插件版本,必须
+"
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'Yggdroot/indentLine' "缩进线条"
-"缩进线条插件配置"
+
+"
+" 快速注释插件
+"
+Plugin 'tpope/vim-commentary'
+"
+"缩进线条
+"
+Plugin 'Yggdroot/indentLine'
+"
+"缩进线条插件配置
+"
 let g:indentLine_setColors = 1 "设置突出颜色0开启1关闭"
 let g:indentLine_color_term = 255 "设置指示线的颜色"
 ""let g:indentLine_bgcolor_term = 255""let g:indentLine_bgcolor_gui = '#FF5F00'
@@ -204,14 +219,21 @@ let g:indentLine_color_term = 255 "设置指示线的颜色"
 ""let g:indentLine_conceallevel = 2
 ""let g:indentLine_setConceal = 1 "设置显示竖线"
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
-""
+"
+"Vim底部状态栏
+"
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-"airline 主题全局设定"
+"
+"airline 主题全局设定
+"
 let g:airline_theme = 'tomorrow'
 "airline_theme"
 "simple light fruit_punch behelit dark dark_minimal tomorrow"
-Plugin 'plasticboy/vim-markdown' "markdown语法高亮插件
+"
+"markdown语法高亮插件
+"
+Plugin 'plasticboy/vim-markdown'
 Plugin 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install_sync()},'for' :['markdown', 'Vundle' ] } "vim编辑markdown预览插件
 let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
 let g:mkdp_auto_start = 0 "设置自动打开，打开为1,取消为0
