@@ -149,31 +149,31 @@ noremap <C-m> $
 "noremap H I
 "更改移动键位end
 
-"设置自动补全括号，输入右边的符号自动跳过
-"ClosePair是一个自定义函数用来跳过右边符号"
-inoremap ( ()<Esc>i 
-"在i后面加入了一个空格"
-inoremap ) <C-r>=ClosePair(')')<CR>
+"""设置自动补全括号，输入右边的符号自动跳过
+"""ClosePair是一个自定义函数用来跳过右边符号"
+""inoremap ( ()<Esc>i 
+"""在i后面加入了一个空格"
+""inoremap ) <C-r>=ClosePair(')')<CR>
 inoremap { {}<Esc>i<CR><Esc>O
 "<Tab>"
 inoremap } <C-r>=ClosePair('}')<CR>
-inoremap [ []<Esc>i 
-"在i后面加入了一个空格"
-inoremap ] <C-r>=ClosePair(']')<CR>
-"双引号和单引号设置会出问题"
-inoremap ' ''<Esc>i
-"inoremap ' <C-r>=ClosePair('')<CR>
-inoremap " ""<Esc>i
-"inoremap " <C-r>=ClosePair('')<CR>
-"跳过右边符号的函数"
-function! ClosePair(char)
-    if getline('.')[col('.') - 1] == a:char
-		        return " \<Right>"
-			"分别在跳过右边符号时前面后面添加了一个空格，用来跳过高亮"
-	else
-			    return a:char
-	endif
-endfunction
+""inoremap [ []<Esc>i 
+"""在i后面加入了一个空格"
+""inoremap ] <C-r>=ClosePair(']')<CR>
+"""双引号和单引号设置会出问题"
+""inoremap ' ''<Esc>i
+"""inoremap ' <C-r>=ClosePair('')<CR>
+""inoremap " ""<Esc>i
+"""inoremap " <C-r>=ClosePair('')<CR>
+"""跳过右边符号的函数"
+""function! ClosePair(char)
+""    if getline('.')[col('.') - 1] == a:char
+""		        return " \<Right>"
+""			"分别在跳过右边符号时前面后面添加了一个空格，用来跳过高亮"
+""	else
+""			    return a:char
+""	endif
+""endfunction
 
 
 "快速查找<++>并替换<++>（占位符）可任意替换
@@ -184,9 +184,10 @@ inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 "设置C自动补全"
 inoremap <C-p> printf("",<++>);<Esc>7hi
 inoremap scanf scanf("",&<++>);<Esc>8hi
+"可用代码片段（暂时未添加）
 nnoremap co i#include<stdio.h><CR>int main( void )<CR>{}<Esc>i<CR><CR><UP><TAB><TAB>return 0;<Esc>O
-"设置注释补全"
-inoremap /* /*  */<Esc>2hi
+"设置注释补全，已经使用了快速注释插件可删除这一段
+"inoremap /* /*  */<Esc>2hi
 
 set nocompatible              " 去除VI一致性,必须
 filetype off                  " 必须
@@ -201,6 +202,10 @@ call vundle#begin()
 "
 Plugin 'VundleVim/Vundle.vim'
 
+"
+" 自动补全括号插件
+"
+Plugin 'Raimondi/delimitMate'
 "
 " 快速注释插件
 "
