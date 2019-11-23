@@ -7,6 +7,12 @@ let mapleader=","
 "自定义函数（vimscript）
 
 
+" 让配置变更立即生效
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+"R变成后面这个命令
+"map E :source $MYVIMRC<CR> 
+
+
 "设置主题
 "industry 无透明，青灰色双引号内容，绿色注释，C语言关键字无高亮
 "slate 透明，绿色双引号内容，橙色注释，C语言蓝色高亮关键字
@@ -27,7 +33,9 @@ colorscheme koehler
 "colorscheme slate
 "设置透明
 "let g:SnazzyTransparent = 1
-
+"
+" 设置 gvim 显示字体
+set guifont=YaHei\ Consolas\ Hybrid\ 11.5
 
 
 "设置出现输入的键位
@@ -51,6 +59,11 @@ set relativenumber
 "set cursorcolumn
 nnoremap <LEADER>s :set cursorline cursorcolumn<CR>
 nnoremap <LEADER>ss :set nocursorline nocursorcolumn<CR>
+" 总是显示状态栏
+set laststatus=2
+" 显示光标当前位置
+set ruler
+
 
 "设置自动换行不会超出屏幕边缘
 set wrap
@@ -91,8 +104,6 @@ noremap - Nzz
 "关闭高亮
 noremap <LEADER>/ :nohlsearch<CR>
 
-"R变成后面这个命令
-map E :source $MYVIMRC<CR> 
 "小写s会删除当前字符使用<nop>变为空
 ""map s <nop>
 
@@ -101,7 +112,10 @@ map <LEADER>w :w<CR>
 
 "退出
 map <LEADER>q :q<CR>
-
+"设置快捷键将选中文本块复制至系统剪贴板
+vnoremap <Leader>y "+y
+"设置快捷键将系统剪贴板内容粘贴至 vim
+nmap <Leader>p "+p
 
 "分屏操作
 "分屏操作向右设置光标向右，左右分屏vsplit上下split
@@ -202,6 +216,31 @@ call vundle#begin()
 "
 Plugin 'VundleVim/Vundle.vim'
 
+
+
+"
+" Ultisnips
+"
+Plugin 'SirVer/ultisnips'
+"
+" Ultisnips setting
+"
+map <C-n> <nop>
+let g:UltiSnipsExpandTrigger="<C-l>"
+let g:UltiSnipsJumpForwardTrigger="<C-l>"
+let g:UltiSnipsJumpBackwardTrigger="<C-h>"
+" 使用 UltiSnipsEdit 命令时垂直分割屏幕
+let g:UltiSnipsEditSplit="vertical"
+" 如果文件不是在 ~/.vim/mycoolsnippets
+" 每次进入Vim自动寻找目录下的Snippets文件配置
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets']
+" 如果文件在 ~/.vim/mycoolsnippets
+" let g:UltiSnipsSnippetDirectories=["UltiSnips", "mycoolsnippets"]
+
+
+Plugin 'Lokaltog/vim-powerline'
+"设置状态栏主题风格
+let g:Powerline_colorscheme='solarized256'
 "
 " 自动补全括号插件
 "
@@ -224,17 +263,19 @@ let g:indentLine_color_term = 255 "设置指示线的颜色"
 ""let g:indentLine_conceallevel = 2
 ""let g:indentLine_setConceal = 1 "设置显示竖线"
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
 "
 "Vim底部状态栏
 "
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-"
-"airline 主题全局设定
-"
-let g:airline_theme = 'tomorrow'
-"airline_theme"
-"simple light fruit_punch behelit dark dark_minimal tomorrow"
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+""
+""airline 主题全局设定
+""
+"let g:airline_theme = 'tomorrow'
+""airline_theme"
+""simple light fruit_punch behelit dark dark_minimal tomorrow"
+
 "
 "markdown语法高亮插件
 "
