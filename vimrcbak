@@ -195,11 +195,12 @@ inoremap } <C-r>=ClosePair('}')<CR>
 ""map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
+"已经用代码片段替代
 "设置C自动补全"
-inoremap <C-p> printf("",<++>);<Esc>7hi
-inoremap scanf scanf("",&<++>);<Esc>8hi
-"可用代码片段（暂时未添加）
-nnoremap co i#include<stdio.h><CR>int main( void )<CR>{}<Esc>i<CR><CR><UP><TAB><TAB>return 0;<Esc>O
+"inoremap <C-p> printf("",<++>);<Esc>7hi
+"inoremap scanf scanf("",&<++>);<Esc>8hi
+"nnoremap co i#include<stdio.h><CR>int main( void )<CR>{}<Esc>i<CR><CR><UP><TAB><TAB>return 0;<Esc>O
+
 "设置注释补全，已经使用了快速注释插件可删除这一段
 "inoremap /* /*  */<Esc>2hi
 
