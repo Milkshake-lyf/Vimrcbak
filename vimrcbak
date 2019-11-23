@@ -228,9 +228,9 @@ Plugin 'Tenderest/vim-snippets'
 " Ultisnips setting
 "
 map <C-n> <nop>
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<C-l>"
-let g:UltiSnipsJumpBackwardTrigger="<C-h>"
+let g:UltiSnipsExpandTrigger="<LEADER>l"
+let g:UltiSnipsJumpForwardTrigger="<LEADER>l"
+let g:UltiSnipsJumpBackwardTrigger="<LEADER>h"
 " 使用 UltiSnipsEdit 命令时垂直分割屏幕
 let g:UltiSnipsEditSplit="vertical"
 " 如果文件不是在 ~/.vim/mycoolsnippets
