@@ -223,6 +223,7 @@ Plugin 'VundleVim/Vundle.vim'
 " Ultisnips
 "
 Plugin 'SirVer/ultisnips'
+Plugin 'Tenderest/vim-snippets'
 "
 " Ultisnips setting
 "
