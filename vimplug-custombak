@@ -1,7 +1,4 @@
-" 使用vundle管理插件
-“ 也可以使用vim-plug来进行管理
-” 都可在Github查找
-" 两个管理区别为插件安装的格式
+" 使用vundle管理插件，也可以使用vim-plug来进行管理，都可在Github查找，两个管理区别为插件安装的格式
 ” vundle 为Plugin
 " vim-plug 为Plug
 “ 以下是vundle的配置"
@@ -17,9 +14,6 @@ call vundle#begin()
 " 让vundle管理插件版本,必须
 "
 Plugin 'VundleVim/Vundle.vim'
-
-
-
 "
 " Ultisnips
 "
