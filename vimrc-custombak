@@ -151,30 +151,47 @@ map <up> :res +5<CR>
 map <down> :res -5<CR>
 map <right> :vertical resize +5<CR>
 map <left> :vertical resize -5<CR>
-
+"
 "标签操作
+"
+"
 "打开一个新的标签
+"
 map tt :tabe<CR>
+"
 "下一个标签页
+"
 map tl :+tabnext<CR>
+"
 "上一个标签页
+"
 map th :-tabnext<CR>
-
+"
 "注意！这里跳5行操作还是原来为更改移动键位时默认的hjkl
+"
 noremap J 5j
 noremap K 5k
 noremap H 5h
 noremap L 5l
-
+"
 "快速移动到行首或行尾
+"
 noremap <C-n> 0
 noremap <C-m> $
+"
 "i插入模式被更改这里使用h
+"
 "noremap h i
 "noremap H I
+"
 "更改移动键位end
+"
 
+"
 "快速查找<++>并替换<++>（占位符）可任意替换
+"
+"
 "注意此处LEADER已在文件头更改成1左边的符号"
-""map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+"
+"map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
