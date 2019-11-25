@@ -195,3 +195,11 @@ noremap <C-m> $
 "
 "map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
+" encoding
+set encoding=utf-8
+"set fileencodings=ucs-bom,utf-8,cp936,gb18030,big5,euc-jp,euc-kr,latin1
+"set termencoding=utf-8
+"set ffs=unix,dos,mac
+"set formatoptions+=m
+"set formatoptions+=B
