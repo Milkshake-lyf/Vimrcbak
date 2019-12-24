@@ -258,12 +258,15 @@ Plugin 'Yggdroot/indentLine'
 "
 "缩进线条插件配置
 "
-let g:indentLine_setColors = 1 "设置突出颜色0开启1关闭"
-let g:indentLine_color_term = 255 "设置指示线的颜色"
-""let g:indentLine_bgcolor_term = 255""let g:indentLine_bgcolor_gui = '#FF5F00'
-""let g:indentLine_concealcursor = 'inc'
-""let g:indentLine_conceallevel = 2
-""let g:indentLine_setConceal = 1 "设置显示竖线"
+"let g:indentLine_setColors = 1 "设置突出颜色0开启1关闭"
+let g:indentLine_color_term = 000 "设置指示线的颜色" "黑色"
+let g:indentLine_bgcolor_term = 111 "蓝色背景"
+"let g:indentLine_bgcolor_gui = '#FF5F00'
+"let g:indentLine_concealcursor = 'inc'
+"let g:indentLine_conceallevel = 2
+"let g:indentLine_setConceal = 1 
+"设置显示竖线"
+"let g:indentLine_char_list = ['^', '`', '*', '!']
 let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 "
