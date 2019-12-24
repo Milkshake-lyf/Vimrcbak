@@ -1,0 +1,298 @@
+"设置leader键成英文逗号，默认为反斜杆
+let mapleader=","
+"vimrc 的主要配置
+"常用设置
+"常用映射
+"插件的安装和配置
+"自定义函数（vimscript）
+
+
+" 让配置变更立即生效
+autocmd BufWritePost $MYVIMRC source $MYVIMRC
+"R变成后面这个命令
+"map E :source $MYVIMRC<CR> 
+
+
+"设置主题
+"industry 无透明，青灰色双引号内容，绿色注释，C语言关键字无高亮
+"slate 透明，绿色双引号内容，橙色注释，C语言蓝色高亮关键字
+"desert 透明，橙（棕）色双引号内容，绿色注释，C语言关键字高亮
+"pablo 透明，森绿色双引号内容，灰色注释，C语言关键字高亮
+"peachpuff
+"darkblue 无透明，淡紫色双引号，数字内容，红色注释，关键字高亮除printf外，笔记本上的使用
+"default 透明，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
+"delek 透明，青绿色双引号，数字内容，红色注释，关键字高亮除printf外，笔记本上的使用
+"elflord 透明，蓝紫色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
+"industry 无透明，蓝灰色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
+"morning 白色背景，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
+"murphy 无透明，森绿色双引号，数字内容，关键字也是森绿色，灰白色注释，笔记本上的配置
+colorscheme koehler
+"industry, delek, elflord darkblue koehler"
+"上面这个是笔记本上的主题配置
+"下面这个是PC上的配置
+"colorscheme slate
+"设置透明
+"let g:SnazzyTransparent = 1
+"
+" 设置 gvim 显示字体
+set guifont=YaHei\ Consolas\ Hybrid\ 11.5
+
+
+"设置出现输入的键位
+set showcmd
+
+"按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。"
+set autoindent
+"设置tab转为空格"
+set expandtab
+"设置tab转换成多少个空格"
+set softtabstop=4
+"设置行号
+set number 
+
+"设置行号距离多少,norelativenumber关闭
+set relativenumber 
+
+"设置光标所在字母的下划线
+"set cursorline
+"设置光标所在字母的竖线
+"set cursorcolumn
+nnoremap <LEADER>s :set cursorline cursorcolumn<CR>
+nnoremap <LEADER>ss :set nocursorline nocursorcolumn<CR>
+" 总是显示状态栏
+set laststatus=2
+" 显示光标当前位置
+set ruler
+
+
+"设置自动换行不会超出屏幕边缘
+set wrap
+
+"设置normal模式命令补全
+set wildmenu
+
+"让vim可以使用鼠标
+set mouse=a
+
+"让屏幕上下移动时都显示x行
+set scrolloff=7
+
+"更改进入不同模式光标的样式似乎只在alacritty生效
+let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+"进入时光标在上一次退出的地方
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"把jj设置成Esc键
+inoremap kj <Esc>
+
+"打开语法高亮
+syntax on 
+"打开搜索高亮
+set hlsearch
+exec "nohlsearch"
+"打开边搜索边高亮
+set incsearch
+"搜索时忽略大小写
+set ignorecase
+"搜索时智能搜索
+set smartcase
+noremap = nzz
+noremap - Nzz
+"关闭高亮
+noremap <LEADER>/ :nohlsearch<CR>
+
+"小写s会删除当前字符使用<nop>变为空
+""map s <nop>
+
+"保存
+map <LEADER>w :w<CR> 
+
+"退出
+map <LEADER>q :q<CR>
+"设置快捷键将选中文本块复制至系统剪贴板
+vnoremap <Leader>y "+y
+"设置快捷键将系统剪贴板内容粘贴至 vim
+nmap <Leader>p "+p
+
+"分屏操作
+"分屏操作向右设置光标向右，左右分屏vsplit上下split
+map sr :set splitright<CR>:vsplit<CR>
+map sl :set nosplitright<CR>:vsplit<CR>
+map su :set nosplitbelow<CR>:split<CR>
+map sd :set splitbelow<CR>:split<CR>
+"分屏切换光标Ctrl+W hjkl,注意此处LEADER已在文件头更改成空格
+map <LEADER>h <C-w>h
+map <LEADER>j <C-w>j
+map <LEADER>k <C-w>k
+map <LEADER>l <C-w>l
+"更改分屏的大小
+map <up> :res +5<CR>
+map <down> :res -5<CR>
+map <right> :vertical resize +5<CR>
+map <left> :vertical resize -5<CR>
+
+"标签操作
+"打开一个新的标签
+map tt :tabe<CR>
+"下一个标签页
+map tl :+tabnext<CR>
+"上一个标签页
+map th :-tabnext<CR>
+
+"noremap格式说明
+"noremap ×替换后的键位× ×替换前的键位×
+""更改移动键位begin
+"noremap i k
+"noremap k j
+"noremap j h
+"noremap l l
+"注意！这里跳5行操作还是原来为更改移动键位时默认的hjkl
+noremap J 5j
+noremap K 5k
+noremap H 5h
+noremap L 5l
+
+"快速移动到行首或行尾
+noremap <C-n> 0
+noremap <C-m> $
+"i插入模式被更改这里使用h
+"noremap h i
+"noremap H I
+"更改移动键位end
+
+"""设置自动补全括号，输入右边的符号自动跳过
+"""ClosePair是一个自定义函数用来跳过右边符号"
+""inoremap ( ()<Esc>i 
+"""在i后面加入了一个空格"
+""inoremap ) <C-r>=ClosePair(')')<CR>
+inoremap { {}<Esc>i<CR><Esc>O
+"<Tab>"
+inoremap } <C-r>=ClosePair('}')<CR>
+""inoremap [ []<Esc>i 
+"""在i后面加入了一个空格"
+""inoremap ] <C-r>=ClosePair(']')<CR>
+"""双引号和单引号设置会出问题"
+""inoremap ' ''<Esc>i
+"""inoremap ' <C-r>=ClosePair('')<CR>
+""inoremap " ""<Esc>i
+"""inoremap " <C-r>=ClosePair('')<CR>
+"""跳过右边符号的函数"
+""function! ClosePair(char)
+""    if getline('.')[col('.') - 1] == a:char
+""		        return " \<Right>"
+""			"分别在跳过右边符号时前面后面添加了一个空格，用来跳过高亮"
+""	else
+""			    return a:char
+""	endif
+""endfunction
+
+
+"快速查找<++>并替换<++>（占位符）可任意替换
+"注意此处LEADER已在文件头更改成1左边的符号"
+""map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+
+"已经用代码片段替代
+"设置C自动补全"
+"inoremap <C-p> printf("",<++>);<Esc>7hi
+"inoremap scanf scanf("",&<++>);<Esc>8hi
+"nnoremap co i#include<stdio.h><CR>int main( void )<CR>{}<Esc>i<CR><CR><UP><TAB><TAB>return 0;<Esc>O
+
+"设置注释补全，已经使用了快速注释插件可删除这一段
+"inoremap /* /*  */<Esc>2hi
+
+call plug#begin('~/.vim/plugged')
+"
+" Ultisnips
+"
+Plug 'SirVer/ultisnips'
+Plug 'Tenderest/vim-snippets'
+"
+" Ultisnips setting
+"
+map <C-n> <nop>
+let g:UltiSnipsExpandTrigger="<LEADER>l"
+let g:UltiSnipsJumpForwardTrigger="<LEADER>l"
+let g:UltiSnipsJumpBackwardTrigger="<LEADER>h"
+" 使用 UltiSnipsEdit 命令时垂直分割屏幕
+let g:UltiSnipsEditSplit="vertical"
+" 如果文件不是在 ~/.vim/mycoolsnippets
+" 每次进入Vim自动寻找目录下的Snippets文件配置
+let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets']
+" 如果文件在 ~/.vim/mycoolsnippets
+" let g:UltiSnipsSnippetDirectories=["UltiSnips", "mycoolsnippets"]
+
+
+Plug 'Lokaltog/vim-powerline'
+"设置状态栏主题风格
+let g:Powerline_colorscheme='solarized256'
+"
+" 自动补全括号插件
+"
+Plug 'Raimondi/delimitMate'
+"
+" 快速注释插件
+"
+Plug 'tpope/vim-commentary'
+"
+"缩进线条
+"
+Plug 'Yggdroot/indentLine'
+"
+"缩进线条插件配置
+"
+let g:indentLine_setColors = 1 "设置突出颜色0开启1关闭"
+let g:indentLine_color_term = 255 "设置指示线的颜色"
+""let g:indentLine_bgcolor_term = 255""let g:indentLine_bgcolor_gui = '#FF5F00'
+""let g:indentLine_concealcursor = 'inc'
+""let g:indentLine_conceallevel = 2
+""let g:indentLine_setConceal = 1 "设置显示竖线"
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+
+"
+"Vim底部状态栏
+"
+"Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline-themes'
+""
+""airline 主题全局设定
+""
+"let g:airline_theme = 'tomorrow'
+""airline_theme"
+""simple light fruit_punch behelit dark dark_minimal tomorrow"
+
+"
+"markdown语法高亮插件
+"
+"Plug 'plasticboy/vim-markdown'
+"Plug 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install_sync()},'for' :['markdown', 'Vundle' ] } "vim编辑markdown预览插件
+let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
+let g:mkdp_auto_start = 0 "设置自动打开，打开为1,取消为0
+let g:mkdp_auto_close = 1 "设置自动关闭默认为1,取消写0
+let g:mkdp_page_title = '「${name}」' "预览的时候顶部显示markdown文件的名字
+let g:mkdp_browserfunc = 'sync_scrool_type:relative'
+"noremap M :MarkdownPreview<CR> "无法自动关闭
+"Plug 'connorholyday/vim-snazzy'
+"Plug 'ycm-core/YouCompleteMe'
+Plug 'scrooloose/nerdtree'
+"更改启动NERDTree的键位
+map ff :NERDTreeToggle<CR> 
+"A Plugin of NERDTree showing git status flags. Works with the LATEST version of NERDTree.
+Plug 'Xuyuanp/nerdtree-git-plugin'
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+let g:NERDTreeShowIgnoredStatus = 1
+call plug#end()            " 必须
