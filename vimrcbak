@@ -26,13 +26,11 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "industry 无透明，蓝灰色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
 "morning 白色背景，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
 "murphy 无透明，森绿色双引号，数字内容，关键字也是森绿色，灰白色注释，笔记本上的配置
-colorscheme koehler
+colorscheme snazzy
 "industry, delek, elflord darkblue koehler"
 "上面这个是笔记本上的主题配置
 "下面这个是PC上的配置
 "colorscheme slate
-"设置透明
-"let g:SnazzyTransparent = 1
 "
 " 设置 gvim 显示字体
 set guifont=YaHei\ Consolas\ Hybrid\ 11.5
@@ -136,28 +134,31 @@ map <left> :vertical resize -5<CR>
 
 "标签操作
 "打开一个新的标签
-map tt :tabe<CR>
+map Tt :tabe<CR>
 "下一个标签页
-map tl :+tabnext<CR>
+map Tl :+tabnext<CR>
 "上一个标签页
-map th :-tabnext<CR>
+map Th :-tabnext<CR>
 
 "noremap格式说明
 "noremap ×替换后的键位× ×替换前的键位×
-""更改移动键位begin
-"noremap i k
-"noremap k j
-"noremap j h
-"noremap l l
+"更改移动键位begin
+"Dvorak
+"Normal
+nnoremap <C-d> h
+nnoremap <C-h> j
+nnoremap <C-t> k
+nnoremap <C-n> l
+"Visual
+vnoremap <C-d> h
+vnoremap <C-h> j
+vnoremap <C-t> k
+vnoremap <C-n> l
 "注意！这里跳5行操作还是原来为更改移动键位时默认的hjkl
-noremap J 5j
-noremap K 5k
-noremap H 5h
-noremap L 5l
 
 "快速移动到行首或行尾
-noremap <C-n> 0
-noremap <C-m> $
+"noremap <C-n> 0
+"noremap <C-m> $
 "i插入模式被更改这里使用h
 "noremap h i
 "noremap H I
@@ -227,7 +228,7 @@ Plugin 'Tenderest/vim-snippets'
 "
 " Ultisnips setting
 "
-map <C-n> <nop>
+"map <C-n> <nop>
 let g:UltiSnipsExpandTrigger="<LEADER>l"
 let g:UltiSnipsJumpForwardTrigger="<LEADER>l"
 let g:UltiSnipsJumpBackwardTrigger="<LEADER>h"
@@ -239,7 +240,16 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets']
 " 如果文件在 ~/.vim/mycoolsnippets
 " let g:UltiSnipsSnippetDirectories=["UltiSnips", "mycoolsnippets"]
 
-
+"
+" VimTheme
+"
+Plugin 'connorholyday/vim-snazzy'
+"设置透明
+"let g:SnazzyTransparent = 1
+"需要移动vim-snazzy目录下的snazzy.vim到~/.vim/colors
+"
+" Vim底部状态栏
+"
 Plugin 'Lokaltog/vim-powerline'
 "设置状态栏主题风格
 let g:Powerline_colorscheme='solarized256'
@@ -266,8 +276,8 @@ let g:indentLine_bgcolor_term = 111 "蓝色背景"
 "let g:indentLine_conceallevel = 2
 "let g:indentLine_setConceal = 1 
 "设置显示竖线"
-"let g:indentLine_char_list = ['^', '`', '*', '!']
-let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+let g:indentLine_char_list = ['^', '`', '*', '!']
+"let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
 "
 "Vim底部状态栏
@@ -292,7 +302,6 @@ let g:mkdp_auto_close = 1 "设置自动关闭默认为1,取消写0
 let g:mkdp_page_title = '「${name}」' "预览的时候顶部显示markdown文件的名字
 let g:mkdp_browserfunc = 'sync_scrool_type:relative'
 "noremap M :MarkdownPreview<CR> "无法自动关闭
-"Plugin 'connorholyday/vim-snazzy'
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 "更改启动NERDTree的键位
