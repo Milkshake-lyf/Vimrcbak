@@ -6,7 +6,6 @@ let mapleader=","
 "插件的安装和配置
 "自定义函数（vimscript）
 
-
 " 让配置变更立即生效
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "R变成后面这个命令
@@ -26,7 +25,9 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "industry 无透明，蓝灰色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
 "morning 白色背景，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
 "murphy 无透明，森绿色双引号，数字内容，关键字也是森绿色，灰白色注释，笔记本上的配置
-colorscheme snazzy
+colorscheme gruvbox9
+set background=dark
+"colorscheme snazzy
 "industry, delek, elflord darkblue koehler"
 "上面这个是笔记本上的主题配置
 "下面这个是PC上的配置
@@ -35,10 +36,11 @@ colorscheme snazzy
 " 设置 gvim 显示字体
 set guifont=YaHei\ Consolas\ Hybrid\ 11.5
 
-
 "设置出现输入的键位
 set showcmd
 
+"出错时，发出视觉提示，通常是屏幕闪烁。
+"set visualbell
 "按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。"
 set autoindent
 "设置tab转为空格"
@@ -49,7 +51,7 @@ set softtabstop=4
 set number 
 
 "设置行号距离多少,norelativenumber关闭
-set relativenumber 
+"set relativenumber 
 
 "设置光标所在字母的下划线
 "set cursorline
@@ -84,7 +86,9 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 "把jj设置成Esc键
-inoremap kj <Esc>
+"inoremap kj <Esc>
+"Dvorak in Visual Studio Code - Vim
+inoremap <S-q> <Esc>
 
 "打开语法高亮
 syntax on 
@@ -170,7 +174,7 @@ vnoremap <C-n> l
 """在i后面加入了一个空格"
 ""inoremap ) <C-r>=ClosePair(')')<CR>
 inoremap { {}<Esc>i<CR><Esc>O
-"<Tab>"
+"No need"<Tab>"
 inoremap } <C-r>=ClosePair('}')<CR>
 ""inoremap [ []<Esc>i 
 """在i后面加入了一个空格"
@@ -219,7 +223,6 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 
-
 "
 " Ultisnips
 "
@@ -243,16 +246,49 @@ let g:UltiSnipsSnippetDirectories=[$HOME.'/.vim/bundle/vim-snippets']
 "
 " VimTheme
 "
+set t_Co=256
+Plugin 'taigacute/gruvbox9'
+Plugin 'morhetz/gruvbox'
 Plugin 'connorholyday/vim-snazzy'
 "设置透明
 "let g:SnazzyTransparent = 1
 "需要移动vim-snazzy目录下的snazzy.vim到~/.vim/colors
+
+
 "
 " Vim底部状态栏
 "
-Plugin 'Lokaltog/vim-powerline'
-"设置状态栏主题风格
-let g:Powerline_colorscheme='solarized256'
+Plugin 'itchyny/lightline.vim'
+let g:lightline = {
+    \ 'colorscheme' : 'darcula',
+    \ }
+""	g:lightline.colorscheme			*g:lightline.colorscheme*
+""		The colorscheme for lightline.vim.
+""		Currently, wombat, solarized, powerline, powerlineish,
+""		jellybeans, molokai, seoul256, darcula, selenized_dark,
+""		Tomorrow, Tomorrow_Night, Tomorrow_Night_Blue,
+""		Tomorrow_Night_Bright, Tomorrow_Night_Eighties, PaperColor,
+""		landscape, one, materia, material, OldHope, nord, deus,
+""		srcery_drk, ayu_mirage, ayu_light and 16color are available.
+""		The default value is:
+""		let g:lightline.colorscheme = 'default'
+
+
+
+
+"Plugin 'vim-airline/vim-airline'
+"Plugin 'vim-airline/vim-airline-themes'
+"
+" airline 主题全局设定
+"
+"let g:airline_theme = 'tomorrow'
+""airline_theme"
+""simple light fruit_punch behelit dark dark_minimal tomorrow"
+
+"Plugin 'Lokaltog/vim-powerline'
+""设置状态栏主题风格
+"let g:Powerline_colorscheme='solarized256'
+
 "
 " 自动补全括号插件
 "
@@ -276,32 +312,24 @@ let g:indentLine_bgcolor_term = 111 "蓝色背景"
 "let g:indentLine_conceallevel = 2
 "let g:indentLine_setConceal = 1 
 "设置显示竖线"
-let g:indentLine_char_list = ['^', '`', '*', '!']
-"let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+"let g:indentLine_char_list = ['^', '`', '*', '!']
+let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 
-"
-"Vim底部状态栏
-"
-"Plugin 'vim-airline/vim-airline'
-"Plugin 'vim-airline/vim-airline-themes'
-""
-""airline 主题全局设定
-""
-"let g:airline_theme = 'tomorrow'
-""airline_theme"
-""simple light fruit_punch behelit dark dark_minimal tomorrow"
+
 
 "
 "markdown语法高亮插件
 "
-Plugin 'plasticboy/vim-markdown'
-Plugin 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install_sync()},'for' :['markdown', 'Vundle' ] } "vim编辑markdown预览插件
-let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
-let g:mkdp_auto_start = 0 "设置自动打开，打开为1,取消为0
-let g:mkdp_auto_close = 1 "设置自动关闭默认为1,取消写0
-let g:mkdp_page_title = '「${name}」' "预览的时候顶部显示markdown文件的名字
-let g:mkdp_browserfunc = 'sync_scrool_type:relative'
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'iamcco/markdown-preview.vim', { 'do': { -> mkdp#util#install_sync()},'for' :['markdown', 'Vundle' ] } "vim编辑markdown预览插件
+"let g:mkdp_path_to_chrome = "google-chrome-stable" "设置预览用google chrome打开，同时google chrome安装Markdown Preview Plus
+"let g:mkdp_auto_start = 0 "设置自动打开，打开为1,取消为0
+"let g:mkdp_auto_close = 1 "设置自动关闭默认为1,取消写0
+"let g:mkdp_page_title = '「${name}」' "预览的时候顶部显示markdown文件的名字
+"let g:mkdp_browserfunc = 'sync_scrool_type:relative'
 "noremap M :MarkdownPreview<CR> "无法自动关闭
+
+
 Plugin 'ycm-core/YouCompleteMe'
 Plugin 'scrooloose/nerdtree'
 "更改启动NERDTree的键位
