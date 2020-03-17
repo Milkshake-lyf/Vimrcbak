@@ -25,7 +25,7 @@ autocmd BufWritePost $MYVIMRC source $MYVIMRC
 "industry 无透明，蓝灰色双引号，数字内容，绿色注释，关键字高亮除printf外，笔记本上的使用
 "morning 白色背景，红色双引号，数字内容，蓝色注释，关键字高亮除printf外，笔记本上的使用
 "murphy 无透明，森绿色双引号，数字内容，关键字也是森绿色，灰白色注释，笔记本上的配置
-colorscheme gruvbox
+colorscheme gruvbox9
 set background=dark
 "colorscheme snazzy
 "industry, delek, elflord darkblue koehler"
@@ -36,93 +36,116 @@ set background=dark
 " 设置 gvim 显示字体
 set guifont=YaHei\ Consolas\ Hybrid\ 11.5
 
-"设置出现输入的键位
+" 设置背景透明
+hi Normal ctermfg=252 ctermbg=none
+" 设置出现输入的键位
 set showcmd
+set noshowmode
+set laststatus=2
 
-"出错时，发出视觉提示，通常是屏幕闪烁。
-"set visualbell
-"按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。"
+" 设置状态栏格式
+"set statusline=%<%F%=%y%m%r%h%w%{&ff}\[%{&fenc}]0x%02B@%040h#%n\(%3l/%3L,%3c\|%3v\)%3p%%
+" set statusline=%1*\%<%.50F\               "显示文件名和文件路径
+" set statusline+=%=%2*\%y%m%r%h%w\ %*      "显示文件类型及文件状态
+" set statusline+=%3*\%{&ff}\[%{&fenc}]\ %* "显示文件编码类型
+" set statusline+=%4*\ row:%l/%L,col:%c\ %* "显示光标所在行和列
+" set statusline+=%5*\%3p%%\%*              "显示光标前文本所占总文本的比例
+" hi User1 cterm=none ctermfg=25 ctermbg=0
+" hi User2 cterm=none ctermfg=208 ctermbg=0
+" hi User3 cterm=none ctermfg=169 ctermbg=0
+" hi User4 cterm=none ctermfg=100 ctermbg=0
+" hi User5 cterm=none ctermfg=green ctermbg=0
+
+
+
+" 出错时，发出视觉提示，通常是屏幕闪烁。
+" set visualbell
+" 按下回车键后，下一行的缩进会自动跟上一行的缩进保持一致。" 
 set autoindent
-"设置tab转为空格"
+" 设置tab转为空格" 
 set expandtab
-"设置tab转换成多少个空格"
+" 设置tab转换成多少个空格" 
 set softtabstop=4
-"设置行号
+" 设置行号
 set number 
 
-"设置行号距离多少,norelativenumber关闭
-"set relativenumber 
+" 设置行号距离多少,norelativenumber关闭
+" set relativenumber 
 
-"设置光标所在字母的下划线
-"set cursorline
-"设置光标所在字母的竖线
-"set cursorcolumn
+" 设置光标所在字母的下划线整行
+set cursorline
+" 设置光标所在字母的竖线
+hi Normal ctermfg=241 ctermbg=235 guifg=#6272A4 guibg=#282828
+set colorcolumn=80
+hi Over80 cterm=bold ctermbg=241 gui=bold guibg=#665C54
+au BufNewFile,BufRead * :match Over80 /.\%>81v/
 nnoremap <LEADER>s :set cursorline cursorcolumn<CR>
 nnoremap <LEADER>ss :set nocursorline nocursorcolumn<CR>
-" 总是显示状态栏
+"  总是显示状态栏
 set laststatus=2
-" 显示光标当前位置
+"  显示光标当前位置
 set ruler
 
 
-"设置自动换行不会超出屏幕边缘
+" 设置自动换行不会超出屏幕边缘
 set wrap
 
-"设置normal模式命令补全
+" 设置normal模式命令补全
 set wildmenu
 
-"让vim可以使用鼠标
-" a=allow
-" n=no
+
+" 让vim可以使用鼠标
+"  a=allow
+"  n=no
 set mouse=n
 
-"让屏幕上下移动时都显示x行
+" 让屏幕上下移动时都显示x行
 set scrolloff=7
 
-"更改进入不同模式光标的样式似乎只在alacritty生效
+" 更改进入不同模式光标的样式似乎只在alacritty生效
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
-"进入时光标在上一次退出的地方
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" 进入时光标在上一次退出的地方
+au BufReadPost * if line("'\"" ) > 1 && line("'\"" ) <= line("$" ) | exe "normal! g'\"" | endif
 
-"把jj设置成Esc键
-"inoremap kj <Esc>
-"Dvorak in Visual Studio Code - Vim
-inoremap <S-q> <Esc>
+" 把jj设置成Esc键
+" inoremap kj <Esc>
+" Dvorak in Visual Studio Code - Vim
+inoremap <Leader><Leader> <Esc>
 
-"打开语法高亮
+" 打开语法高亮
 syntax on 
-"打开搜索高亮
+" 打开搜索高亮
 set hlsearch
-exec "nohlsearch"
-"打开边搜索边高亮
+exec "nohlsearch" 
+" 打开边搜索边高亮
 set incsearch
-"搜索时忽略大小写
+" 搜索时忽略大小写
 set ignorecase
-"搜索时智能搜索
+" 搜索时智能搜索
 set smartcase
 noremap = nzz
 noremap - Nzz
-"关闭高亮
+" 关闭高亮
 noremap <LEADER>/ :nohlsearch<CR>
 
-"小写s会删除当前字符使用<nop>变为空
-""map s <nop>
+" 小写s会删除当前字符使用<nop>变为空
+" " map s <nop>
 
-"保存
+" 保存
 map <LEADER>w :w<CR> 
 
-"退出
+" 退出
 map <LEADER>q :q<CR>
-"设置快捷键将选中文本块复制至系统剪贴板
-vnoremap <Leader>y "+y
-"设置快捷键将系统剪贴板内容粘贴至 vim
-nmap <Leader>p "+p
+" 设置快捷键将选中文本块复制至系统剪贴板
+vnoremap <Leader>y " +y
+" 设置快捷键将系统剪贴板内容粘贴至 vim
+nmap <Leader>p " +p
 
-"分屏操作
-"分屏操作向右设置光标向右，左右分屏vsplit上下split
+" 分屏操作
+" 分屏操作向右设置光标向右，左右分屏vsplit上下split
 map sr :set splitright<CR>:vsplit<CR>
 map sl :set nosplitright<CR>:vsplit<CR>
 map su :set nosplitbelow<CR>:split<CR>
@@ -133,10 +156,10 @@ map <LEADER>j <C-w>j
 map <LEADER>k <C-w>k
 map <LEADER>l <C-w>l
 "更改分屏的大小
-map <up> :res +5<CR>
-map <down> :res -5<CR>
-map <right> :vertical resize +5<CR>
-map <left> :vertical resize -5<CR>
+"map <up> :res +5<CR>
+"map <down> :res -5<CR>
+"map <right> :vertical resize +5<CR>
+"map <left> :vertical resize -5<CR>
 
 "标签操作
 "打开一个新的标签
@@ -155,11 +178,24 @@ nnoremap <C-d> h
 nnoremap <C-h> j
 nnoremap <C-t> k
 nnoremap <C-n> l
+
+inoremap <LEADER>d <Esc>i
+inoremap <LEADER>n <Esc>lli
+
+nnoremap <S-d> 5h
+nnoremap <S-h> 5j
+nnoremap <S-t> 5k
+nnoremap s <nop>
 "Visual
 vnoremap <C-d> h
 vnoremap <C-h> j
 vnoremap <C-t> k
 vnoremap <C-n> l
+
+
+vnoremap <S-d> 5h
+vnoremap <S-h> 5j
+vnoremap <S-t> 5k
 "注意！这里跳5行操作还是原来为更改移动键位时默认的hjkl
 
 "快速移动到行首或行尾
@@ -200,7 +236,7 @@ inoremap } <C-r>=ClosePair('}')<CR>
 "快速查找<++>并替换<++>（占位符）可任意替换
 "注意此处LEADER已在文件头更改成1左边的符号"
 ""map <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
-inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
+"inoremap <LEADER><LEADER> <Esc>/<++><CR>:nohlsearch<CR>c4l
 
 "已经用代码片段替代
 "设置C自动补全"
